@@ -1,0 +1,449 @@
+/* ================================================================
+   style.css — 카페 서재현 디지털 메뉴판 스타일시트
+   design.md 명세를 기반으로 작성
+   ================================================================ */
+
+
+/* ----------------------------------------------------------------
+   1. 전역 초기화 & 기본 설정 (Global Reset & Base)
+   ---------------------------------------------------------------- */
+
+*, *::before, *::after {
+  /* 모든 요소(*) 및 가상 요소(::before, ::after)에 적용 */
+  box-sizing: border-box;
+  /* padding과 border가 요소의 width/height 안에 포함되도록 계산 방식 변경 */
+  /* 기본값(content-box)은 padding을 더해 실제 크기가 커지는 문제가 생김 */
+  margin: 0;
+  /* 브라우저마다 다른 기본 margin을 제거해 일관된 레이아웃 확보 */
+  padding: 0;
+  /* 브라우저마다 다른 기본 padding을 제거해 일관된 레이아웃 확보 */
+}
+
+html {
+  /* <html> 루트 요소: 폰트 기준 크기 설정 */
+  font-size: 16px;
+  /* rem 단위의 기준값. 1rem = 16px으로 계산됨 */
+  scroll-behavior: smooth;
+  /* 페이지 내 앵커 이동 시 부드럽게 스크롤되도록 설정 */
+}
+
+body {
+  /* <body> 전체 페이지 기본 스타일 */
+  font-family: 'Noto Sans KR', 'Malgun Gothic', sans-serif;
+  /* design.md 명세: Noto Sans KR 웹폰트 우선, 없으면 맑은 고딕, 마지막 fallback은 sans-serif */
+  background-color: #FAFAFA;
+  /* design.md 명세: Body 배경색 — 아주 연한 회색으로 카드와 대비 효과 */
+  color: #333333;
+  /* design.md 명세: 기본 텍스트 색상 — 진한 회색(순수 검정보다 눈의 피로 감소) */
+  line-height: 1.6;
+  /* 줄 간격을 글자 크기의 1.6배로 설정해 가독성 향상 */
+  min-height: 100vh;
+  /* 페이지 콘텐츠가 짧아도 body가 최소 화면 전체 높이를 채우도록 설정 */
+  display: flex;
+  /* body를 Flexbox 컨테이너로 설정해 header-main-footer 수직 레이아웃 구성 */
+  flex-direction: column;
+  /* Flex 자식 요소(header, main, footer)를 세로 방향으로 쌓음 */
+}
+
+
+/* ----------------------------------------------------------------
+   2. 헤더 영역 (Header)
+   ---------------------------------------------------------------- */
+
+.site-header {
+  /* 페이지 최상단 헤더 컴포넌트 */
+  text-align: center;
+  /* design.md 명세: 헤더 내용 중앙 정렬 */
+  padding: 48px 24px 40px;
+  /* 상:48px, 좌우:24px, 하:40px — 헤더 상단 여백 확보(design.md 명세) */
+  border-bottom: 1px solid #E0E0E0;
+  /* design.md 명세: 연한 구분선으로 헤더와 메인 영역을 시각적으로 분리 */
+  background-color: #FFFFFF;
+  /* 헤더 배경은 순백색으로 본문 배경(#FAFAFA)과 미묘하게 구분 */
+}
+
+.header__title {
+  /* 매장 이름 스타일 */
+  font-size: 2.25rem;
+  /* 36px — 페이지에서 가장 크고 눈에 띄는 제목 크기 */
+  font-weight: 700;
+  /* design.md 명세: 제목은 font-weight 굵게(700) 처리 */
+  color: #333333;
+  /* design.md 명세: 제목 텍스트 색상 — 진한 회색 */
+  letter-spacing: -0.5px;
+  /* 한글 제목에서 글자 간격을 살짝 좁혀 더 깔끔하게 보이도록 설정 */
+  margin-bottom: 8px;
+  /* 제목과 슬로건 사이 여백 */
+}
+
+.header__slogan {
+  /* 헤더 슬로건(소개 문구) 스타일 */
+  font-size: 0.9375rem;
+  /* 15px — 제목보다 작고 설명적인 글씨 크기 */
+  font-weight: 300;
+  /* design.md 명세: 설명 텍스트는 얇게(300) 처리 */
+  color: #888888;
+  /* design.md 명세: 설명/부제목 텍스트 색상 — 중간 회색 */
+  letter-spacing: 0.5px;
+  /* 슬로건은 글자 간격을 살짝 늘려 우아한 느낌 연출 */
+}
+
+
+/* ----------------------------------------------------------------
+   3. 메인 콘텐츠 영역 (Main)
+   ---------------------------------------------------------------- */
+
+.site-main {
+  /* <main> 요소: 페이지 핵심 콘텐츠 영역 */
+  flex: 1;
+  /* body의 Flex 자식으로서 남은 수직 공간을 모두 차지해 footer를 하단에 고정 */
+  padding: 40px 24px;
+  /* 상하:40px, 좌우:24px — 메인 콘텐츠의 외부 여백 */
+  max-width: 1280px;
+  /* 최대 너비를 1280px로 제한해 초대형 화면에서도 읽기 편한 레이아웃 유지 */
+  margin: 0 auto;
+  /* 좌우 auto margin으로 콘텐츠를 화면 중앙에 배치 */
+  width: 100%;
+  /* 부모 너비(body)의 100%를 차지해 반응형 레이아웃 지원 */
+}
+
+.menu-section {
+  /* 메뉴 섹션 전체 래퍼 */
+  width: 100%;
+  /* 부모(.site-main) 너비를 꽉 채움 */
+}
+
+.menu-section__heading {
+  /* "오늘의 메뉴" 섹션 제목 */
+  font-size: 1.375rem;
+  /* 22px — h1보다 작고 카드 메뉴명보다 큰 중간 크기 */
+  font-weight: 700;
+  /* 굵은 글씨로 섹션 시작을 명확히 표시 */
+  color: #333333;
+  /* 진한 회색 계열 텍스트 */
+  margin-bottom: 24px;
+  /* 제목과 카드 그리드 사이 여백 */
+  padding-bottom: 12px;
+  /* 아래 border와의 간격 확보 */
+  border-bottom: 2px solid #E53935;
+  /* design.md 명세 포인트 색상(붉은 계열)으로 섹션 제목 하단 강조선 */
+  display: inline-block;
+  /* border-bottom이 텍스트 너비에만 맞게 적용되도록 인라인 블록으로 설정 */
+}
+
+
+/* ----------------------------------------------------------------
+   4. 메뉴 그리드 컨테이너 (Menu Grid — CSS Grid)
+   ---------------------------------------------------------------- */
+
+.menu-grid {
+  /* 카드들이 배치되는 CSS Grid 컨테이너 */
+  display: grid;
+  /* CSS Grid 레이아웃을 활성화 — design.md 명세 핵심 기술 */
+  grid-template-columns: repeat(4, 1fr);
+  /* design.md 명세 데스크톱: 한 줄에 4개 카드. 각 컬럼은 동일 비율(1fr) */
+  /* repeat(4, 1fr) = 1fr 1fr 1fr 1fr 의 단축 표현 */
+  gap: 24px;
+  /* 카드 사이 가로·세로 간격을 24px로 균일하게 설정 */
+}
+
+
+/* ----------------------------------------------------------------
+   5. 메뉴 카드 (Menu Card)
+   ---------------------------------------------------------------- */
+
+.menu-card {
+  /* 개별 메뉴 카드 컴포넌트 */
+  background-color: #FFFFFF;
+  /* design.md 명세: 카드 배경색 — 순백색 */
+  border-radius: 12px;
+  /* design.md 명세: 부드러운 모서리 둥글기로 모던한 카드 디자인 */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  /* design.md 명세: 배경과 구분되는 미세한 그림자 효과 */
+  /* 0=x축이동 없음, 2px=아래방향, 8px=흐림반경, 8%투명도 검정 */
+  overflow: hidden;
+  /* 카드 이미지가 border-radius 밖으로 삐져나오지 않도록 잘라냄 */
+  display: flex;
+  /* 카드 내부(이미지 + 텍스트)를 Flexbox로 배치 */
+  flex-direction: column;
+  /* 이미지(상단)와 텍스트(하단)를 세로로 쌓음 */
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  /* design.md 명세: 호버 애니메이션을 위한 부드러운 전환 효과 설정 */
+  /* 0.25s: 전환 지속 시간, ease: 천천히 시작해 중간에 빠르고 끝에 느려지는 가속 곡선 */
+}
+
+.menu-card:hover {
+  /* 마우스를 카드 위에 올렸을 때(호버) 적용되는 스타일 */
+  transform: translateY(-6px);
+  /* design.md 명세: 카드가 위로 6px 살짝 떠오르는 느낌의 애니메이션 */
+  /* translateY(음수): Y축 기준 위 방향으로 이동 */
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.14);
+  /* 호버 시 그림자를 더 짙고 넓게 만들어 공중에 뜬 느낌 강화 */
+}
+
+
+/* ----------------------------------------------------------------
+   6. 카드 이미지 영역 (Card Image)
+   ---------------------------------------------------------------- */
+
+.menu-card__image-wrapper {
+  /* 이미지 비율을 고정하기 위한 래퍼 컨테이너 */
+  width: 100%;
+  /* 카드 너비를 꽉 채움 */
+  aspect-ratio: 4 / 3;
+  /* design.md 명세: 이미지를 4:3 비율로 고정 (가로:세로 = 4:3) */
+  /* aspect-ratio는 width를 기준으로 height를 자동 계산해줌 */
+  overflow: hidden;
+  /* 이미지가 지정된 비율 박스를 벗어나지 않도록 잘라냄 */
+}
+
+.menu-card__image {
+  /* 실제 <img> 태그 스타일 */
+  width: 100%;
+  /* 래퍼 너비를 100% 채움 */
+  height: 100%;
+  /* 래퍼 높이를 100% 채움 */
+  object-fit: cover;
+  /* design.md 명세: 이미지 비율을 유지하면서 영역을 꽉 채우고 넘치는 부분은 잘라냄 */
+  /* object-fit: contain은 비율 유지 + 여백 생김 / cover는 비율 유지 + 영역 꽉 채움 */
+  display: block;
+  /* <img>의 기본값(inline)에서 발생하는 하단 여백(ghost space)을 제거 */
+  transition: transform 0.35s ease;
+  /* 호버 시 이미지 확대 애니메이션을 위한 전환 효과 준비 */
+}
+
+.menu-card:hover .menu-card__image {
+  /* 카드에 호버할 때 내부 이미지에 적용되는 스타일 */
+  transform: scale(1.05);
+  /* 이미지를 5% 확대해 카드 안에서 은은하게 줌인되는 효과 연출 */
+  /* 래퍼의 overflow: hidden 덕분에 확대된 부분은 잘려서 카드 밖으로 나가지 않음 */
+}
+
+
+/* ----------------------------------------------------------------
+   7. 카드 텍스트 정보 영역 (Card Info)
+   ---------------------------------------------------------------- */
+
+.menu-card__info {
+  /* 메뉴명, 가격, 설명 텍스트가 들어가는 영역 */
+  padding: 16px;
+  /* 텍스트 영역 사방 여백 16px — 카드 내부 숨 공간(design.md Box Model 명세) */
+  flex: 1;
+  /* 이미지 아래 남은 카드 높이를 모두 차지해 카드들의 텍스트 영역 높이를 통일 */
+  display: flex;
+  /* 내부 요소(제목행, 설명)를 Flexbox로 배치 */
+  flex-direction: column;
+  /* 제목행(위)과 설명(아래)을 세로로 쌓음 */
+  gap: 8px;
+  /* 제목행과 설명 문단 사이 간격 */
+}
+
+.menu-card__title-row {
+  /* 메뉴명과 가격을 한 줄에 좌·우로 배치하는 행 */
+  display: flex;
+  /* Flexbox 활성화 — design.md 명세: Flexbox로 메뉴명(좌)과 가격(우) 배치 */
+  justify-content: space-between;
+  /* 자식 요소를 양 끝에 붙여 메뉴명은 좌측, 가격은 우측으로 배치 */
+  align-items: baseline;
+  /* 텍스트 기준선(baseline)을 맞춰 글자 크기가 달라도 자연스럽게 정렬 */
+  gap: 8px;
+  /* 메뉴명과 가격 사이 최소 간격 확보 (긴 메뉴명이 가격에 붙지 않도록) */
+}
+
+.menu-card__name {
+  /* 메뉴 이름 텍스트 */
+  font-size: 1rem;
+  /* 기본 크기(16px) — 설명보다 크고 명확하게 */
+  font-weight: 700;
+  /* design.md 명세: 메뉴명은 굵게 처리 */
+  color: #333333;
+  /* design.md 명세: 제목 텍스트 색상 — 진한 회색 */
+  line-height: 1.4;
+  /* 메뉴명 줄 간격 설정 (여러 줄이 될 경우를 대비) */
+}
+
+.menu-card__price {
+  /* 가격 텍스트 */
+  font-size: 1rem;
+  /* 메뉴명과 동일한 크기로 균형감 유지 */
+  font-weight: 700;
+  /* 가격도 굵게 표시해 시선이 잘 가도록 */
+  color: #E53935;
+  /* design.md 명세: 포인트 색상(붉은색 계열)으로 가격을 강조해 빠른 시선 인식 */
+  white-space: nowrap;
+  /* 가격 텍스트(₩12,000)가 줄바꿈 없이 한 줄로 유지되도록 설정 */
+  flex-shrink: 0;
+  /* Flex 자식이 공간 부족 시 줄어드는 것을 막아 가격이 항상 완전히 표시되도록 */
+}
+
+.menu-card__desc {
+  /* 메뉴 설명 문구 */
+  font-size: 0.8125rem;
+  /* 13px — design.md 명세: 메뉴명보다 작은 글씨 */
+  font-weight: 300;
+  /* design.md 명세: 설명은 얇게(300) 처리해 메뉴명과 시각적 위계 구분 */
+  color: #888888;
+  /* design.md 명세: 설명 텍스트 색상 — 중간 회색으로 흐리게 처리 */
+  line-height: 1.65;
+  /* 설명 텍스트 줄 간격을 넉넉히 설정해 가독성 향상 */
+  display: -webkit-box;
+  /* 구형 WebKit 브라우저 호환을 위한 Flexbox 표시 방식 (텍스트 클램프 필수 속성) */
+  -webkit-line-clamp: 2;
+  /* 텍스트를 최대 2줄로 제한 — design.md 명세: 1~2줄 설명 */
+  -webkit-box-orient: vertical;
+  /* 텍스트 박스의 방향을 세로로 설정 (line-clamp 동작을 위한 필수 속성) */
+  overflow: hidden;
+  /* 2줄 초과 텍스트를 숨겨 "..." 말줄임 효과와 함께 사용 */
+}
+
+
+/* ----------------------------------------------------------------
+   8. 푸터 영역 (Footer)
+   ---------------------------------------------------------------- */
+
+.site-footer {
+  /* 페이지 하단 푸터 컴포넌트 */
+  background-color: #FFFFFF;
+  /* 헤더와 동일하게 순백색 배경으로 본문(#FAFAFA)과 구분 */
+  border-top: 1px solid #E0E0E0;
+  /* 메인 영역과 푸터를 시각적으로 분리하는 상단 구분선 */
+  padding: 28px 24px;
+  /* 상하:28px, 좌우:24px — 푸터 내부 여백 */
+  text-align: center;
+  /* design.md 명세: 푸터 내용 하단 중앙 정렬 */
+}
+
+.footer__address {
+  /* 주소, 영업시간, 연락처를 담는 <address> 요소 */
+  font-style: normal;
+  /* <address>의 기본 이탤릭체(italic) 스타일을 일반체로 초기화 */
+  display: flex;
+  /* 주소 항목들을 Flexbox로 가로 배치 */
+  flex-wrap: wrap;
+  /* 화면이 좁아지면 항목들이 자동으로 줄바꿈되도록 설정 */
+  justify-content: center;
+  /* 항목들을 가로 기준 중앙 정렬 */
+  align-items: center;
+  /* 항목들을 세로 기준 중앙 정렬 */
+  gap: 8px 0;
+  /* 줄바꿈 시 세로 간격 8px, 가로 간격 0(구분자가 담당) */
+  margin-bottom: 12px;
+  /* 주소 블록과 저작권 텍스트 사이 여백 */
+  font-size: 0.875rem;
+  /* 14px — 푸터 텍스트는 본문보다 작게 처리 */
+  color: #888888;
+  /* design.md 명세: 부가 정보 텍스트 색상 — 중간 회색 */
+}
+
+.footer__item {
+  /* 주소, 시간, 연락처 각 항목 */
+  white-space: nowrap;
+  /* 각 항목이 줄바꿈 없이 한 줄로 유지되도록 설정 */
+  padding: 0 12px;
+  /* 각 항목 좌우 여백으로 구분자와의 공간 확보 */
+}
+
+.footer__separator {
+  /* 각 정보 항목 사이 구분자(|) */
+  color: #CCCCCC;
+  /* 구분자는 더 연한 회색으로 배경에 자연스럽게 녹아들게 설정 */
+  user-select: none;
+  /* 사용자가 텍스트를 드래그할 때 구분자가 선택되지 않도록 설정 */
+  display: inline;
+  /* 인라인 요소로 유지 */
+}
+
+.footer__copy {
+  /* 저작권(Copyright) 텍스트 */
+  font-size: 0.75rem;
+  /* 12px — 가장 작은 텍스트로 시각적 우선순위를 낮춤 */
+  color: #AAAAAA;
+  /* 매우 연한 회색으로 눈에 띄지 않게 처리 */
+}
+
+
+/* ================================================================
+   9. 반응형 미디어 쿼리 (Responsive — Media Queries)
+   design.md 명세: 화면 크기별 카드 열 수 변경
+   ================================================================ */
+
+@media (max-width: 1024px) {
+  /* 태블릿 큰 화면: 최대 너비 1024px 이하일 때 적용 */
+  /* design.md 명세: 태블릿에서 한 줄에 3개 카드 배치 */
+
+  .menu-grid {
+    /* 그리드 컬럼 수를 4개 → 3개로 변경 */
+    grid-template-columns: repeat(3, 1fr);
+    /* 3개의 동일 너비 컬럼으로 재구성 */
+  }
+}
+
+@media (max-width: 768px) {
+  /* 태블릿 작은 화면: 최대 너비 768px 이하일 때 적용 */
+  /* design.md 명세: 태블릿 소형에서 한 줄에 2개 카드 배치 */
+
+  .menu-grid {
+    /* 그리드 컬럼 수를 3개 → 2개로 변경 */
+    grid-template-columns: repeat(2, 1fr);
+    /* 2개의 동일 너비 컬럼으로 재구성 */
+    gap: 16px;
+    /* 화면이 좁아졌으므로 카드 간격도 24px → 16px로 축소 */
+  }
+
+  .site-main {
+    /* 메인 영역 좌우 여백을 좁은 화면에 맞게 줄임 */
+    padding: 28px 16px;
+    /* 상하:28px, 좌우:16px */
+  }
+
+  .header__title {
+    /* 헤더 제목 폰트 크기를 태블릿 화면에 맞게 줄임 */
+    font-size: 1.75rem;
+    /* 28px — 데스크톱(36px)보다 작게 */
+  }
+}
+
+@media (max-width: 480px) {
+  /* 모바일 화면: 최대 너비 480px 이하일 때 적용 */
+  /* design.md 명세: 모바일에서 한 줄에 1개 카드(세로 전체 너비) */
+
+  .menu-grid {
+    /* 그리드 컬럼 수를 2개 → 1개로 변경 */
+    grid-template-columns: 1fr;
+    /* 1개의 컬럼이 전체 너비를 차지 */
+    gap: 16px;
+    /* 카드 간 세로 간격 유지 */
+  }
+
+  .site-header {
+    /* 모바일에서 헤더 상하 여백을 줄여 공간 효율 향상 */
+    padding: 32px 16px 28px;
+    /* 상:32px, 좌우:16px, 하:28px */
+  }
+
+  .header__title {
+    /* 모바일 헤더 제목 폰트 크기 추가 축소 */
+    font-size: 1.5rem;
+    /* 24px */
+  }
+
+  .header__slogan {
+    /* 모바일 슬로건 폰트 크기 조정 */
+    font-size: 0.875rem;
+    /* 14px */
+  }
+
+  .footer__separator {
+    /* 모바일에서 구분자를 숨겨 주소 항목들이 각 줄에 배치되도록 */
+    display: none;
+    /* 구분자 숨김 — flex-wrap으로 자동 줄바꿈 됨 */
+  }
+
+  .footer__item {
+    /* 구분자가 없으면 각 항목이 독립적으로 한 줄씩 차지 */
+    width: 100%;
+    /* 푸터 항목 전체 너비로 확장해 중앙 정렬 유지 */
+    padding: 2px 0;
+    /* 항목 상하 소폭 여백 추가 */
+  }
+}

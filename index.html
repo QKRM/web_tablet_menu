@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<!-- HTML5 문서 타입 선언: 브라우저에게 이 파일이 HTML5 규격임을 알림 -->
+<html lang="ko">
+<!-- lang="ko": 스크린 리더와 검색 엔진에 이 페이지의 언어가 한국어임을 알림 -->
+
+<head>
+  <!-- <head>: 브라우저에 표시되지 않는 문서 메타 정보 영역 시작 -->
+
+  <meta charset="UTF-8">
+  <!-- charset="UTF-8": 한글이 깨지지 않도록 문자 인코딩을 UTF-8로 설정 -->
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- viewport: 모바일 기기에서 화면 너비를 기기 너비에 맞추고 초기 배율을 1:1로 설정 (반응형 필수) -->
+
+  <title>카페 서재현 | 메뉴판</title>
+  <!-- title: 브라우저 탭에 표시되는 페이지 제목 -->
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <!-- preconnect: Google Fonts 서버와 미리 연결해 폰트 로딩 속도를 높임 -->
+
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- crossorigin: 다른 도메인(gstatic.com)에서 자원을 가져올 때 CORS 처리 허용 -->
+
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700&display=swap" rel="stylesheet">
+  <!-- Noto Sans KR 폰트를 300(얇게), 400(기본), 700(굵게) 세 가지 두께로 불러옴 -->
+  <!-- display=swap: 폰트 로딩 전에는 시스템 폰트를 먼저 보여주어 사용자 경험을 개선 -->
+
+  <link rel="stylesheet" href="style.css">
+  <!-- 외부 스타일시트(style.css)를 현재 HTML 문서에 연결 -->
+
+</head>
+<!-- </head>: 메타 정보 영역 종료 -->
+
+<body>
+<!-- <body>: 브라우저 화면에 실제로 표시되는 콘텐츠 영역 시작 -->
+
+  <!-- ======================== HEADER 영역 ======================== -->
+  <header class="site-header">
+  <!-- <header>: 페이지 상단 헤더 의미론적(Semantic) 태그. class로 CSS 스타일 연결 -->
+
+    <h1 class="header__title">카페 서재현</h1>
+    <!-- <h1>: 페이지에서 가장 중요한 제목(매장명). SEO 및 접근성을 위해 페이지당 하나만 사용 -->
+
+    <p class="header__slogan">매일 아침 신선한 재료로 정성껏 요리합니다</p>
+    <!-- <p>: 헤더 슬로건(소개 문구). 제목 아래 작은 글씨로 표시될 단락 -->
+
+  </header>
+  <!-- </header>: 헤더 영역 종료 -->
+
+  <!-- ======================== MAIN 콘텐츠 영역 ======================== -->
+  <main class="site-main">
+  <!-- <main>: 페이지의 핵심 콘텐츠를 감싸는 의미론적 태그 -->
+
+    <!-- ---- 메뉴 섹션 제목 ---- -->
+    <section class="menu-section">
+    <!-- <section>: 연관된 콘텐츠 묶음. 메뉴 그리드 전체를 하나의 구획으로 묶음 -->
+
+      <h2 class="menu-section__heading">오늘의 메뉴</h2>
+      <!-- <h2>: 섹션 제목. h1 다음 단계 제목으로 화면에는 보이지 않게 처리하거나 강조용으로 사용 -->
+
+      <!-- ---- 메뉴 카드 그리드 컨테이너 ---- -->
+      <div class="menu-grid">
+      <!-- class="menu-grid": CSS Grid가 적용될 부모 컨테이너. 카드들이 이 안에 정렬됨 -->
+
+        <!-- ===== 메뉴 카드 1: 시그니처 덮밥 ===== -->
+        <article class="menu-card">
+        <!-- <article>: 독립적으로 의미를 갖는 콘텐츠 단위(메뉴 카드 하나). Semantic HTML -->
+
+          <div class="menu-card__image-wrapper">
+          <!-- 이미지 비율(4:3)을 유지하기 위한 래퍼 div. aspect-ratio CSS 속성 적용 대상 -->
+
+            <img
+              class="menu-card__image"
+              src="https://picsum.photos/seed/donburi/400/300"
+              alt="시그니처 덮밥 사진"
+            >
+            <!-- <img>: 메뉴 음식 사진. src는 이미지 경로, alt는 이미지 설명(접근성 필수) -->
+            <!-- picsum.photos: 개발용 플레이스홀더 이미지 서비스, seed로 항상 같은 이미지 보장 -->
+
+          </div>
+          <!-- </div>: 이미지 래퍼 종료 -->
+
+          <div class="menu-card__info">
+          <!-- 메뉴명, 가격, 설명이 들어갈 텍스트 정보 영역 -->
+
+            <div class="menu-card__title-row">
+            <!-- 메뉴명과 가격을 한 줄에 좌·우로 배치하기 위한 Flexbox 컨테이너 -->
+
+              <span class="menu-card__name">시그니처 덮밥</span>
+              <!-- <span>: 인라인 요소. 메뉴 이름을 굵게 표시하기 위한 텍스트 컨테이너 -->
+
+              <span class="menu-card__price">₩12,000</span>
+              <!-- 가격 텍스트. CSS에서 포인트 색상(붉은색 계열)으로 강조 처리 -->
+
+            </div>
+            <!-- </div>: 제목-가격 행 종료 -->
+
+            <p class="menu-card__desc">매콤한 특제 소스가 들어간 시그니처 덮밥. 국내산 소고기 사용.</p>
+            <!-- 메뉴 설명 문구. 작고 흐린 글씨(#888888)로 1~2줄 처리 -->
+
+          </div>
+          <!-- </div>: 텍스트 정보 영역 종료 -->
+
+        </article>
+        <!-- </article>: 메뉴 카드 1 종료 -->
+
+        <!-- ===== 메뉴 카드 2: 된장찌개 정식 ===== -->
+        <article class="menu-card">
+
+          <div class="menu-card__image-wrapper">
+            <img
+              class="menu-card__image"
+              src="https://picsum.photos/seed/doenjang/400/300"
+              alt="된장찌개 정식 사진"
+            >
+          </div>
+
+          <div class="menu-card__info">
+            <div class="menu-card__title-row">
+              <span class="menu-card__name">된장찌개 정식</span>
+              <span class="menu-card__price">₩9,000</span>
+            </div>
+            <p class="menu-card__desc">구수한 국산 된장과 두부, 제철 채소로 끓인 정통 된장찌개 한상.</p>
+          </div>
+
+        </article>
+        <!-- </article>: 메뉴 카드 2 종료 -->
+
+        <!-- ===== 메뉴 카드 3: 비빔밥 ===== -->
+        <article class="menu-card">
+
+          <div class="menu-card__image-wrapper">
+            <img
+              class="menu-card__image"
+              src="https://picsum.photos/seed/bibimbap/400/300"
+              alt="비빔밥 사진"
+            >
+          </div>
+
+          <div class="menu-card__info">
+            <div class="menu-card__title-row">
+              <span class="menu-card__name">비빔밥</span>
+              <span class="menu-card__price">₩10,000</span>
+            </div>
+            <p class="menu-card__desc">신선한 야채와 고소한 참기름, 고추장이 어우러진 전통 비빔밥.</p>
+          </div>
+
+        </article>
+        <!-- </article>: 메뉴 카드 3 종료 -->
+
+        <!-- ===== 메뉴 카드 4: 순두부찌개 정식 ===== -->
+        <article class="menu-card">
+
+          <div class="menu-card__image-wrapper">
+            <img
+              class="menu-card__image"
+              src="https://picsum.photos/seed/sundubu/400/300"
+              alt="순두부찌개 정식 사진"
+            >
+          </div>
+
+          <div class="menu-card__info">
+            <div class="menu-card__title-row">
+              <span class="menu-card__name">순두부찌개 정식</span>
+              <span class="menu-card__price">₩9,500</span>
+            </div>
+            <p class="menu-card__desc">부드럽고 칼칼한 순두부찌개와 공깃밥, 기본 반찬이 함께 나옵니다.</p>
+          </div>
+
+        </article>
+        <!-- </article>: 메뉴 카드 4 종료 -->
+
+        <!-- ===== 메뉴 카드 5: 삼겹살 구이 ===== -->
+        <article class="menu-card">
+
+          <div class="menu-card__image-wrapper">
+            <img
+              class="menu-card__image"
+              src="https://picsum.photos/seed/samgyeopsal/400/300"
+              alt="삼겹살 구이 사진"
+            >
+          </div>
+
+          <div class="menu-card__info">
+            <div class="menu-card__title-row">
+              <span class="menu-card__name">삼겹살 구이</span>
+              <span class="menu-card__price">₩15,000</span>
+            </div>
+            <p class="menu-card__desc">두툼하게 썬 국내산 삼겹살 200g. 쌈채소와 된장이 함께 제공됩니다.</p>
+          </div>
+
+        </article>
+        <!-- </article>: 메뉴 카드 5 종료 -->
+
+        <!-- ===== 메뉴 카드 6: 물냉면 ===== -->
+        <article class="menu-card">
+
+          <div class="menu-card__image-wrapper">
+            <img
+              class="menu-card__image"
+              src="https://picsum.photos/seed/naengmyeon/400/300"
+              alt="물냉면 사진"
+            >
+          </div>
+
+          <div class="menu-card__info">
+            <div class="menu-card__title-row">
+              <span class="menu-card__name">물냉면</span>
+              <span class="menu-card__price">₩11,000</span>
+            </div>
+            <p class="menu-card__desc">시원하고 새콤달콤한 육수에 탱글한 메밀면, 여름에 특히 인기 메뉴.</p>
+          </div>
+
+        </article>
+        <!-- </article>: 메뉴 카드 6 종료 -->
+
+        <!-- ===== 메뉴 카드 7: 갈비탕 ===== -->
+        <article class="menu-card">
+
+          <div class="menu-card__image-wrapper">
+            <img
+              class="menu-card__image"
+              src="https://picsum.photos/seed/galbitang/400/300"
+              alt="갈비탕 사진"
+            >
+          </div>
+
+          <div class="menu-card__info">
+            <div class="menu-card__title-row">
+              <span class="menu-card__name">갈비탕</span>
+              <span class="menu-card__price">₩16,000</span>
+            </div>
+            <p class="menu-card__desc">진한 국물이 일품인 한우 갈비탕. 6시간 이상 푹 끓여 깊은 맛을 냅니다.</p>
+          </div>
+
+        </article>
+        <!-- </article>: 메뉴 카드 7 종료 -->
+
+        <!-- ===== 메뉴 카드 8: 잡채 ===== -->
+        <article class="menu-card">
+
+          <div class="menu-card__image-wrapper">
+            <img
+              class="menu-card__image"
+              src="https://picsum.photos/seed/japchae/400/300"
+              alt="잡채 사진"
+            >
+          </div>
+
+          <div class="menu-card__info">
+            <div class="menu-card__title-row">
+              <span class="menu-card__name">잡채</span>
+              <span class="menu-card__price">₩13,000</span>
+            </div>
+            <p class="menu-card__desc">쫄깃한 당면과 알록달록 제철 채소, 소고기가 어우러진 잔치 잡채.</p>
+          </div>
+
+        </article>
+        <!-- </article>: 메뉴 카드 8 종료 -->
+
+      </div>
+      <!-- </div class="menu-grid">: 메뉴 카드 그리드 컨테이너 종료 -->
+
+    </section>
+    <!-- </section class="menu-section">: 메뉴 섹션 종료 -->
+
+  </main>
+  <!-- </main>: 핵심 콘텐츠 영역 종료 -->
+
+  <!-- ======================== FOOTER 영역 ======================== -->
+  <footer class="site-footer">
+  <!-- <footer>: 페이지 하단 정보를 담는 의미론적 태그 -->
+
+    <address class="footer__address">
+    <!-- <address>: 연락처·주소 정보를 표시하는 Semantic 태그 (이탤릭체 기본 스타일 적용됨) -->
+
+      <span class="footer__item">📍 서울시 강남구 테헤란로 123</span>
+      <!-- 매장 주소 항목. 이모지는 시각적 구분을 위한 용도 -->
+
+      <span class="footer__separator">|</span>
+      <!-- 구분자: 각 정보 항목 사이를 시각적으로 분리하는 세로선 -->
+
+      <span class="footer__item">🕐 매일 11:00 – 22:00 (라스트 오더 21:30)</span>
+      <!-- 영업시간 항목 -->
+
+      <span class="footer__separator">|</span>
+      <!-- 구분자 -->
+
+      <span class="footer__item">📞 02-1234-5678</span>
+      <!-- 전화번호 항목 -->
+
+    </address>
+    <!-- </address>: 주소 블록 종료 -->
+
+    <p class="footer__copy">&copy; 2026 카페 서재현. All rights reserved.</p>
+    <!-- 저작권 표시. &copy;는 © 기호의 HTML 엔티티 -->
+
+  </footer>
+  <!-- </footer>: 푸터 영역 종료 -->
+
+</body>
+<!-- </body>: 화면 표시 콘텐츠 영역 종료 -->
+
+</html>
+<!-- </html>: HTML 문서 전체 종료 -->
